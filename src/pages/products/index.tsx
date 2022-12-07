@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Header from 'components/Header'
-import ProductList from 'components/ProductList'
+import Head from "next/head";
+import Header from "components/Header";
+import ProductList from "components/ProductList";
 
 export default function Products() {
   return (
@@ -14,7 +14,6 @@ export default function Products() {
       <Header />
 
       <ProductList />
-
     </>
-  )
+  );
 }

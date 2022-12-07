@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addToCart } from 'components/Cart/slice'
-import { ProductType } from 'types/product'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "components/Cart/slice";
+import { ProductType } from "types/product";
 
 interface Props {
-  product: ProductType
+  product: ProductType;
 }
 
 export default function AddToCart(props: Props) {
-  const dispatch = useDispatch()
-  const [buttonText, setButtonText] = useState('Add To Cart')
+  const dispatch = useDispatch();
+  const [buttonText, setButtonText] = useState("Add To Cart");
 
   const handleClick = () => {
     dispatch(addToCart(props.product));
-    setButtonText('Thank you!');
+    setButtonText("Thank you!");
 
     setTimeout(() => {
-      setButtonText('Add To Cart');
+      setButtonText("Add To Cart");
     }, 2000);
-  }
+  };
 
   return (
     <button
@@ -28,5 +28,5 @@ export default function AddToCart(props: Props) {
     >
       {buttonText}
     </button>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
   XMarkIcon,
   ArrowDownIcon,
-  ArrowUpIcon
-} from '@heroicons/react/24/outline'
-import { RootState } from 'store/store';
-import { useSelector, useDispatch } from 'react-redux';
-import { decrementQuantity, incrementQuantity, removeItem } from './slice';
+  ArrowUpIcon,
+} from "@heroicons/react/24/outline";
+import { RootState } from "store/store";
+import { useSelector, useDispatch } from "react-redux";
+import { decrementQuantity, incrementQuantity, removeItem } from "./slice";
 
 interface Props {
   toggleCart: (open: boolean) => void;
@@ -17,17 +17,22 @@ interface Props {
 export default function Cart(props: Props) {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: RootState) => state.cart);
-  const currency = cart[0]?.currency || '';
+  const currency = cart[0]?.currency || "";
   let subTotal = 0;
-  
 
-  {cart.forEach(item => {
-    subTotal += item.price * item.quantity
-  })}
+  {
+    cart.forEach((item) => {
+      subTotal += item.price * item.quantity;
+    });
+  }
 
   return (
     <Transition.Root show={props.open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={() => props.toggleCart(false)}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={() => props.toggleCart(false)}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -56,7 +61,9 @@ export default function Cart(props: Props) {
                   <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                     <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
+                        <Dialog.Title className="text-lg font-medium text-gray-900">
+                          Shopping cart
+                        </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
@@ -71,8 +78,11 @@ export default function Cart(props: Props) {
 
                       <div className="mt-8">
                         <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {cart.length > 0 ?
+                          <ul
+                            role="list"
+                            className="-my-6 divide-y divide-gray-200"
+                          >
+                            {cart.length > 0 ? (
                               cart.map((product) => (
                                 <li key={product.id} className="flex py-6">
                                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -86,35 +96,62 @@ export default function Cart(props: Props) {
                                     <div>
                                       <div className="flex justify-between text-base font-medium text-gray-900">
                                         <h3>
-                                          <a href={product.href}>{product.name + ' x' + product.quantity}</a>
+                                          <a href={product.href}>
+                                            {product.name +
+                                              " x" +
+                                              product.quantity}
+                                          </a>
                                         </h3>
-                                        <p className="ml-4"><span className="text-xs font-light text-gray-400 mr-3">pc {product.price + ' ' + product.currency}</span>{product.price*product.quantity + ' ' + product.currency}</p>
+                                        <p className="ml-4">
+                                          <span className="text-xs font-light text-gray-400 mr-3">
+                                            pc{" "}
+                                            {product.price +
+                                              " " +
+                                              product.currency}
+                                          </span>
+                                          {product.price * product.quantity +
+                                            " " +
+                                            product.currency}
+                                        </p>
                                       </div>
-                                      <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                                      <p className="mt-1 text-sm text-gray-500">
+                                        {product.color}
+                                      </p>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
                                       <div className="flex">
                                         <button
                                           type="button"
                                           className="h-8 w-8 bg-transparent hover:bg-slate-700 text-slate-700 font-semibold hover:text-white py-0 px-1.5 border border-slate-700 hover:border-slate-700 rounded-l"
-                                          onClick={() => dispatch(decrementQuantity(product))}
+                                          onClick={() =>
+                                            dispatch(decrementQuantity(product))
+                                          }
                                         >
-                                          <ArrowDownIcon className="h-4 w-4" aria-hidden="true" />
+                                          <ArrowDownIcon
+                                            className="h-4 w-4"
+                                            aria-hidden="true"
+                                          />
                                         </button>
                                         <button
                                           type="button"
                                           className="h-8 w-8 bg-transparent hover:bg-slate-700 text-slate-700 font-semibold hover:text-white py-0 px-1.5 border border-slate-700 hover:border-slate-700 border-l-0 rounded-r"
-                                          onClick={() => dispatch(incrementQuantity(product))}
+                                          onClick={() =>
+                                            dispatch(incrementQuantity(product))
+                                          }
                                         >
-                                          <ArrowUpIcon className="h-4 w-4" aria-hidden="true" />
+                                          <ArrowUpIcon
+                                            className="h-4 w-4"
+                                            aria-hidden="true"
+                                          />
                                         </button>
-
                                       </div>
                                       <div className="flex">
                                         <button
                                           type="button"
                                           className="font-medium text-indigo-600 hover:text-indigo-500"
-                                          onClick={() => dispatch(removeItem(product))}
+                                          onClick={() =>
+                                            dispatch(removeItem(product))
+                                          }
                                         >
                                           Remove
                                         </button>
@@ -122,11 +159,14 @@ export default function Cart(props: Props) {
                                     </div>
                                   </div>
                                 </li>
-                              )) : (
-                                <div className="text-center">
-                                  <span className="text-gray-500 text-center">Cart is empty</span>
-                                </div>
-                              )}
+                              ))
+                            ) : (
+                              <div className="text-center">
+                                <span className="text-gray-500 text-center">
+                                  Cart is empty
+                                </span>
+                              </div>
+                            )}
                           </ul>
                         </div>
                       </div>
@@ -135,19 +175,19 @@ export default function Cart(props: Props) {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>{ subTotal + ' '  + currency }</p>
+                        <p>{subTotal + " " + currency}</p>
                       </div>
-                      <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                      <p className="mt-0.5 text-sm text-gray-500">
+                        Shipping and taxes calculated at checkout.
+                      </p>
                       <div className="mt-6">
-                        <span
-                          className="flex items-center justify-center rounded-md border border-transparent bg-gray-300 px-6 py-3 text-base font-medium text-white shadow-sm"
-                        >
+                        <span className="flex items-center justify-center rounded-md border border-transparent bg-gray-300 px-6 py-3 text-base font-medium text-white shadow-sm">
                           Checkout
                         </span>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
-                          {'or '}
+                          {"or "}
                           <button
                             type="button"
                             className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -167,5 +207,5 @@ export default function Cart(props: Props) {
         </div>
       </Dialog>
     </Transition.Root>
-  )
+  );
 }
