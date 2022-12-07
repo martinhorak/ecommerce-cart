@@ -2,7 +2,15 @@ This is a [Next.js](https://nextjs.org/) e-commerce testing project bootstrapped
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+# or
+yarn
+```
+
+then run the development server:
 
 ```bash
 npm run dev
