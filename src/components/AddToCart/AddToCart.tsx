@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addToCart } from '../Cart/slice'
-import { ProductType } from '../../types/product'
+import { addToCart } from 'components/Cart/slice'
+import { ProductType } from 'types/product'
 
 interface Props {
   product: ProductType

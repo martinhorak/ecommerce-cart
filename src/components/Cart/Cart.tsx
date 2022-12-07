@@ -5,7 +5,7 @@ import {
   ArrowDownIcon,
   ArrowUpIcon
 } from '@heroicons/react/24/outline'
-import { RootState } from '../../store/store';
+import { RootState } from 'store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { decrementQuantity, incrementQuantity, removeItem } from './slice';
 

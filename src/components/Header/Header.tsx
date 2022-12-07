@@ -7,7 +7,7 @@ import {
   ChartBarIcon,
 } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-import Cart from '../Cart'
+import Cart from 'components/Cart'
 
 const products = [
   {
